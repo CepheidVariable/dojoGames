@@ -58,7 +58,7 @@
             <p class="lead">I am thinking of a number between 1 and 100...</p>
             <p>Guess in under 10 tries and secure your spot on the leaderboard!</p>
             <hr class="my-4">
-            <form action="" method="POST">
+            <form action="/greatnumbergame/guess" method="POST">
                 {% csrf_token %}
                 <div class="input-group input-group-lg mt-3">
                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="num_guess">
