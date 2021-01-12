@@ -55,24 +55,15 @@
     <div class="container">
         <div class="jumbotron">
             <h1 class="display-4">Welcome to the Great Number Game!</h1>
-            <p class="lead">I am thinking of a number between 1 and 100</p>
-            <p>Take a guess!</p>
+            <p class="lead">I am thinking of a number between 1 and 100...</p>
+            <p>Guess in under 10 tries and secure your spot on the leaderboard!</p>
             <hr class="my-4">
-            <p>Use the utilities below to change how counter works!</p>
-            <a class="btn btn-primary btn-lg" href="/counter/2" role="button">Counter +2</a>
-            <a class="btn btn-primary btn-lg" href="/counter/reset" role="button">Reset Counter</a>
-            <form action="/counter/step" method="POST">
+            <form action="" method="POST">
                 {% csrf_token %}
-                <div class="form-group row">
-                    <div class="input-group input-group-lg mt-3">
-                        <span class="input-group-text" id="inputGroup-sizing-lg">Counter Step</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="new_step" placeholder="{{request.session.step}}">
-                        <input type="hidden" id="default-step" name="default_step" value="1">
-                    </div>
-                    <div class="input-group-append mt-1">
-                        <button class="btn btn-primary btn-lg" type="submit">Update Step</button>
-                    </div>
+                <div class="input-group input-group-lg mt-3">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="num_guess">
                 </div>
+                <button class="btn btn-primary btn-lg mt-2" type="submit">Guess</button>
             </form>
         </div>
     </div>
