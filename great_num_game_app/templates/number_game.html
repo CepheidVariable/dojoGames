@@ -71,10 +71,12 @@
                     <h1>Too low! Try again.</h1>
                 {% elif request.session.guess_result == "lost" %}
                 <h1>Sorry, you lose....</h1>
-                {% elif request.session.attempts == 9 %}
-                <h1>Last chance! Guess well, my friend.</h1>
                 {% endif %}
             </div>
+
+            {% if request.session.attempts == 9 %}
+            <h4 class="mt-5">Last chance! Guess well, my friend.</h4>
+            {% endif %}
 
             {% if request.session.guess_result == "success" or request.session.guess_result == "lost" %}
             <form class="playagain" action="/greatnumbergame/guess" method="POST">
