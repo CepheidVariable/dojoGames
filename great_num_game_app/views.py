@@ -48,7 +48,21 @@ def guess(request):
 
 
 def reset_game(request):
-        request.session['random'] = randint(1, 100)
-        request.session['attempts'] = 0
-        request.session['guess_result'] = "idle"
-        return redirect('/greatnumbergame')
+    request.session['random'] = randint(1, 100)
+    request.session['attempts'] = 0
+    request.session['guess_result'] = "idle"
+    return redirect('/greatnumbergame')
+
+
+def addleader(request):
+    if ('leaderboard' not in request.session):
+        leaders = {request.POST['player']:request.session['attempts']}
+        request.session['leaderboard'] = leaders
+    else:
+        request.session['leaderboard'][request.POST['player']] = request.session['attempts']
+    
+    return redirect('/greatnumbergame/leaderboard')
+
+
+def leaderboard(request):
+    return render(request, 'leaderboard.html')
