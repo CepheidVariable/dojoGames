@@ -21,7 +21,7 @@ body{
     width: 12em;
     height: 12em;
 }
-.close{
+.near{
     background: khaki;
     color: black;
     border: solid .15em black;
@@ -33,7 +33,7 @@ body{
     border: solid .15em black;
     font-size: x-large;
 }
-.incorrect{
+.far{
     background: crimson;
     color: whitesmoke;
     border: solid .15em black;
