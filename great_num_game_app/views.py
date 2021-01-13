@@ -18,10 +18,10 @@ def guess(request):
     request.session['attempts'] += 1
     # str_guess = re.sub("[^0-9]", "", request.POST['guess'])
 
-    if int(str_guess) == request.session['random']:
+    if int(request.POST['guess']) == request.session['random']:
         print("Correct Guess!")
         return redirect('/greatnumbergame')
-    elif(int(str_guess) < (request.session['random'] + 6) and int(str_guess) > (request.session['random'] - 6)):
+    elif(int(request.POST['guess']) < (request.session['random'] + 6) and int(request.POST['guess']) > (request.session['random'] - 6)):
         print("Ooo, close! Try again.")
         return redirect('/greatnumbergame')
     else:
