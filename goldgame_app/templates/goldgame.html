@@ -8,7 +8,7 @@
     {% load static %}
     <script src="{% static 'assets/js/bootstrap.bundle.js' %}"></script>
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/style_counter.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style_goldgame.css' %}">
 
 </head>
 <body>
@@ -57,7 +57,12 @@
         </div>
     </nav>
     <div class="container">
-        test
+        <fieldset disabled>
+            <div class="mb-3 input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Gold:</span>
+                <input type="text" id="disabledTextInput" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        </fieldset>
     </div>
 </body>
 </html>

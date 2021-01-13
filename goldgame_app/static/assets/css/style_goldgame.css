@@ -1,0 +1,7 @@
+body{
+    background: slategray;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
