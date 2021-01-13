@@ -4,7 +4,7 @@ body{
 .container{
     margin-top: 5em;
 }
-.jumbotron {
+.jumbotron{
     padding: 2rem 1rem;
     margin-bottom: 2rem;
     background-color: #e9ecef;
@@ -18,9 +18,12 @@ hr{
     margin-right: 0;
     width: 80%;
 }
+.tablecontainer{
+    width: 80%;
+    margin: 0 auto;
+}
 .idle{
     display: none;
-
 }
 .feedback{
     width: 12em;

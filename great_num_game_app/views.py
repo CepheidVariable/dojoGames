@@ -60,17 +60,17 @@ def addleader(request):
     leader = {
         'player': request.POST['player'],
         'attempts': request.session['attempts'],
-        'date': datetime.datetime.now()
+        'date': json.dumps(datetime.datetime.now(), default=converter)
     }
 
     if ('leaderboard' not in request.session):
         print("not leaders yet, adding first...")
         leaders = []
         request.session['leaderboard'] = leaders
-        request.session['leaderboard'].append(json.dumps(leader, default=converter))
+        request.session['leaderboard'].append(leader)
     else:
         print("new leader added")
-        request.session['leaderboard'].append(json.dumps(leader, default=converter))
+        request.session['leaderboard'].append(leader)
         request.session.modified = True
     
     return redirect('/greatnumbergame/leaderboard')
@@ -78,4 +78,6 @@ def addleader(request):
 
 def leaderboard(request):
     print(request.session['leaderboard'])
+    print(request.session['leaderboard'][0])
+    print(type(request.session['leaderboard'][0]))
     return render(request, 'leaderboard.html')
