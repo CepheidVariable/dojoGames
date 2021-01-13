@@ -1,29 +1,34 @@
 from django.shortcuts import render, redirect
 from random import randint
-import re
 
 # Create your views here.
 def great_num_game(request):
     if ('random' not in request.session):
         request.session['random'] = randint(1, 100)
         request.session['attempts'] = 0
+        request.session['guess_result'] = ""
     print(request.session['random'], request.session['attempts'])
     return render(request, 'number_game.html')
 
 def guess(request):
+    #check if valid input
     if (not request.POST['guess'].isnumeric()):
         print("Invalid guess. Try a number between 1-100.")
         return redirect('/greatnumbergame')
     
+    # increase attempt counter
     request.session['attempts'] += 1
-    # str_guess = re.sub("[^0-9]", "", request.POST['guess'])
 
+    #determine if guess is correct
     if int(request.POST['guess']) == request.session['random']:
         print("Correct Guess!")
+        request.session['guess_result'] = "success"
         return redirect('/greatnumbergame')
     elif(int(request.POST['guess']) < (request.session['random'] + 6) and int(request.POST['guess']) > (request.session['random'] - 6)):
         print("Ooo, close! Try again.")
+        request.session['guess_result'] = "close"
         return redirect('/greatnumbergame')
     else:
         print("Wrong Guess! Try again.")
+        request.session['guess_result'] = "incorrect"
         return redirect('/greatnumbergame')
