@@ -20,5 +20,6 @@ urlpatterns = [
     path('', include('users_app.urls')),
     path('counter/', include('counter_app.urls')),
     path('greatnumbergame/', include('great_num_game_app.urls')),
+    path('goldgame/', include('goldgame_app.urls')),
     path('admin/', admin.site.urls),
 ]

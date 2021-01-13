@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'users_app',
     'counter_app',
     'great_num_game_app',
+    'goldgame_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

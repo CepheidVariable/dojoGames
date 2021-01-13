@@ -1,0 +1,17 @@
+body{
+    background: slategray;
+}
+#wrap{
+    width: 60em;
+    height: auto;
+    background: lavender;
+}
+input[type=radio]{
+    transform:scale(1.25);
+    margin: 0 .25em 0 0;
+
+}
+input[type=checkbox]{
+    transform:scale(1.25);
+    margin-top: 1em;
+}
