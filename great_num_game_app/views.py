@@ -78,6 +78,5 @@ def addleader(request):
 
 def leaderboard(request):
     print(request.session['leaderboard'])
-    print(request.session['leaderboard'][0])
     print(type(request.session['leaderboard'][0]))
     return render(request, 'leaderboard.html')
