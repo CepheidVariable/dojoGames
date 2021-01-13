@@ -9,10 +9,14 @@ def great_num_game(request):
         request.session['attempts'] = 0
         request.session['guess_result'] = "idle"
     print(request.session['random'], request.session['attempts'])
+    if request.session['attempts'] == 10:
+        print("Sorry, you loose.....")
+        request.session['guess_result'] = "lost"
+
     return render(request, 'number_game.html')
 
 def guess(request):
-    #check if valid input
+    #check if valid input or lost
     if (not request.POST['guess'].isnumeric()):
         print("Invalid guess. Try a number between 1-100.")
         return redirect('/greatnumbergame')
@@ -23,7 +27,6 @@ def guess(request):
     #determine if guess is correct
     if int(request.POST['guess']) == request.session['random']:
         print("Correct Guess!")
-        
         request.session['guess_result'] = "success"
         return redirect('/greatnumbergame')
     elif(int(request.POST['guess']) < (request.session['random'] + 6) and int(request.POST['guess']) > (request.session['random'] - 6)):

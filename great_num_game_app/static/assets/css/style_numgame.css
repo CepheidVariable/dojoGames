@@ -40,7 +40,7 @@ hr{
     font-size: x-large;
     font-weight: bold;
 }
-.low, .high{
+.low, .high, .lost{
     background: crimson;
     color: whitesmoke;
     border: solid .15em black;
