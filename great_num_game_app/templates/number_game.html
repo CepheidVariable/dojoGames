@@ -37,8 +37,9 @@
                         Tools
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="/destroy_session">Reset Session</a></li>
+                            <li><a class="dropdown-item" href="/destroy_session">Reset Session (Caution!)</a></li>
                             <li><a class="dropdown-item" href="/counter/reset">Reset Counter</a></li>
+                            <li><a class="dropdown-item" href="/greatnumbergame/reset">Reset Attempts</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -74,6 +75,7 @@
                 <h1>Last chance! Guess well, my friend.</h1>
                 {% endif %}
             </div>
+
             {% if request.session.guess_result == "success" or request.session.guess_result == "lost" %}
             <form class="playagain" action="/greatnumbergame/guess" method="POST">
                 {% csrf_token %}
@@ -92,6 +94,7 @@
                 <button class="btn btn-primary btn-lg mt-2" type="submit">Guess</button>
             </form>
             {% endif %}
+
             {% if request.session.guess_result == "success" and request.session.attempts < 6 %}
             <p class="mt-5">Congratulations, you've earned a spot on the leaderboard. Please enter your name below:</p>
             <form action="/greatnumbergame/leader" method="POST">
@@ -102,6 +105,7 @@
                 <button class="btn btn-primary btn-lg mt-2" type="submit">Submit</button>
             </form>
             {% endif %}
+
             <span class="mt-4">Attempts: {{request.session.attempts}}</span>
         </div>
     </div>
