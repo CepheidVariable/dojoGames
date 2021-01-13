@@ -18,8 +18,12 @@ def great_num_game(request):
 
 
 def guess(request):
-    #check if valid input or lost
+    #check if valid input
     if (not request.POST['guess'].isnumeric()):
+        request.session['guess_result'] = "invalid"
+        return redirect('/greatnumbergame')
+    elif (int(request.POST['guess']) < 1 or int(request.POST['guess']) > 100):
+        request.session['guess_result'] = "invalid"
         return redirect('/greatnumbergame')
     
     # increase attempt counter
@@ -30,7 +34,7 @@ def guess(request):
         request.session['guess_result'] = "success"
         return redirect('/greatnumbergame')
 
-    elif(int(request.POST['guess']) < (request.session['random'] + 6) and int(request.POST['guess']) > (request.session['random'] - 6)):
+    elif(int(request.POST['guess']) < (request.session['random'] + 5) and int(request.POST['guess']) > (request.session['random'] - 5)):
         request.session['guess_result'] = "near"
         return redirect('/greatnumbergame')
 

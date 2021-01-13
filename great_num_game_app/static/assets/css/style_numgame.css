@@ -26,34 +26,42 @@ hr{
     display: none;
 }
 .feedback{
-    width: 12em;
-    height: 12em;
+    width: 18em;
+    height: 18em;
+}
+.invalid{
+    background: yellow;
+    color: whitesmoke;
+    border: solid .15em black;
+    color: black;
+    /* text-align: center; */
 }
 .near{
-    background: khaki;
+    background: skyblue;
     color: black;
     border: solid .15em black;
-    font-size: x-large;
-    font-weight: bold;
+    /* font-size: x-large; */
+    /* font-weight: bold; */
 }
 .success{
     background: forestgreen;
     color: whitesmoke;
     border: solid .15em black;
-    font-size: x-large;
-    font-weight: bold;
+    /* font-size: x-large; */
+    /* font-weight: bold; */
 }
 .low, .high, .lost{
     background: crimson;
     color: whitesmoke;
     border: solid .15em black;
-    font-size: x-large;
-    font-weight: bold;
+    /* font-size: x-large; */
+    /* font-weight: bold; */
 }
-div.feedback > h1{
+div.feedback > h1, h2, p{
     position: relative;
-    top: 30%;
+    top: 25%;
     text-align: center;
+    margin: 0 .5em;
 }
 form.playagain{
     display: none;

@@ -63,17 +63,26 @@
             <p class="lead">Can you guess it in under 10 tries?</p>
             <hr class="my-4">
             <p>Guess in under 5 attempts to secure your spot on the leaderboard, and attain eternal glory!</p>
-            <div class="feedback {{request.session.guess_result}}">
+            <div class="mt-3 feedback {{request.session.guess_result}}">
                 {% if request.session.guess_result == "success" %}
-                    <h1>{{request.session.random}} was the number!</h1>
+                    <h1>Success!</h1>
+                    <h2>{{request.session.random}} was the number.</h2>
                 {% elif request.session.guess_result == "near" %}
-                    <h1>Close! Try again.</h1>
+                    <h1>Close!</h1>
+                    <p>Try again.<p>
                 {% elif request.session.guess_result == "high" %}
-                    <h1>Too high! Try again.</h1>
+                    <h1>Too high!</h1>
+                    <p>Try again.</p>
                 {% elif request.session.guess_result == "low" %}
-                    <h1>Too low! Try again.</h1>
+                    <h1>Too low!</h1>
+                    <p>Try again.</p>
                 {% elif request.session.guess_result == "lost" %}
-                <h1>Sorry, you lose....</h1>
+                    <h1>Sorry, you lose....</h1>
+                {% elif request.session.guess_result == "invalid" %}
+                    <h1>Invalid:</h1>
+                    <p>Only numbers between 1-100 are accepted.</p>
+                    <br>
+                    <p>Look on the bright side, at least it didn't count as an attempt.</p>
                 {% endif %}
             </div>
 
