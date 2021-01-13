@@ -69,6 +69,16 @@
                     <h1>Too low! Try again.</h1>
                 {% endif %}
             </div>
+            {% if request.session.guess_result == "success" %}
+            <form class="playagain" action="/greatnumbergame/guess" method="POST">
+                {% csrf_token %}
+                <div class="input-group input-group-lg mt-3">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="guess">
+                </div>
+                <button class="btn btn-primary btn-lg mt-2" type="submit">Guess</button>
+            </form>
+            <a class= "btn btn-primary btn-lg mt-2" href="/greatnumbergame/reset">Play again</a>
+            {% else %}
             <form action="/greatnumbergame/guess" method="POST">
                 {% csrf_token %}
                 <div class="input-group input-group-lg mt-3">
@@ -76,6 +86,18 @@
                 </div>
                 <button class="btn btn-primary btn-lg mt-2" type="submit">Guess</button>
             </form>
+            {% endif %}
+            {% if request.session.guess_result == "success" and request.session.attempts < 6 %}
+            <p class="mt-5">Congratulations, you've earned a spot on the leaderboard. Please enter your name below:</p>
+            <form action="/greatnumbergame/leader" method="POST">
+                {% csrf_token %}
+                <div class="input-group input-group-lg mt-3">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="playagain">
+                </div>
+                <button class="btn btn-primary btn-lg mt-2" type="submit">Submit</button>
+            </form>
+            {% endif %}
+            <span class="mt-4">Attempts: {{request.session.attempts}}</span>
         </div>
     </div>
 </body>
