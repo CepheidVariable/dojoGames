@@ -61,7 +61,9 @@
             <h1 class="display-4">Leaderboard</h1>
             <p class="lead">May These Great Heroes be Honored for Eternity</p>
             <hr class="my-4">
-            <p>{{request.session.leaderboard}}</p>
+            {% for i in request.session.leaderboard %}
+            <p>{{i}}</p>
+            {% endfor %}
             <p>Can you best these champions? Head over to the Great Number Game to test fate!</p>
         </div>
     </div>
