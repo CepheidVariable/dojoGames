@@ -1,0 +1,46 @@
+body{
+    background: slategray;
+}
+.container{
+    margin-top: 5em;
+}
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.idle{
+    display: none;
+
+}
+.feedback{
+    width: 12em;
+    height: 12em;
+}
+.close{
+    background: khaki;
+    color: black;
+    border: solid .15em black;
+    font-size: x-large;
+}
+.success{
+    background: forestgreen;
+    color: whitesmoke;
+    border: solid .15em black;
+    font-size: x-large;
+}
+.incorrect{
+    background: crimson;
+    color: whitesmoke;
+    border: solid .15em black;
+    font-size: x-large;
+}
+hr{
+    margin-left: 0;
+    margin-right: 0;
+    width: 80%;
+}

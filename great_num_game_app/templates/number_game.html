@@ -8,7 +8,7 @@
     {% load static %}
     <script src="{% static 'assets/js/bootstrap.bundle.js' %}"></script>
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/style_counter.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style_numgame.css' %}">
 
 </head>
 <body>
@@ -56,8 +56,9 @@
         <div class="jumbotron">
             <h1 class="display-4">Welcome to the Great Number Game!</h1>
             <p class="lead">I am thinking of a number between 1 and 100...</p>
-            <p>Guess in under 10 tries and secure your spot on the leaderboard!</p>
             <hr class="my-4">
+            <p>Guess in under 5 attempts to secure your spot on the leaderboard, and attain eternal glory!</p>
+            <div class="feedback {{request.session.guess_result}}"></div>
             <form action="/greatnumbergame/guess" method="POST">
                 {% csrf_token %}
                 <div class="input-group input-group-lg mt-3">

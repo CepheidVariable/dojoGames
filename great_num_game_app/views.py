@@ -6,7 +6,7 @@ def great_num_game(request):
     if ('random' not in request.session):
         request.session['random'] = randint(1, 100)
         request.session['attempts'] = 0
-        request.session['guess_result'] = ""
+        request.session['guess_result'] = "idle"
     print(request.session['random'], request.session['attempts'])
     return render(request, 'number_game.html')
 
