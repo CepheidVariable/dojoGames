@@ -64,7 +64,8 @@ def addleader(request):
     leader = {
         'player': request.POST['player'],
         'attempts': request.session['attempts'],
-        'date': json.dumps(datetime.datetime.now(), default=converter)
+        'date': str(datetime.datetime.now())
+        # json.dumps(datetime.datetime.now(), default=converter)
     }
 
     if ('leaderboard' not in request.session):
@@ -82,5 +83,7 @@ def addleader(request):
 
 def leaderboard(request):
     print(request.session['leaderboard'])
-    print(type(request.session['leaderboard'][0]))
+    print(type(request.session['leaderboard'][-1]))
+    print(type(request.session['leaderboard'][-1]['date']))
+
     return render(request, 'leaderboard.html')
