@@ -13,6 +13,11 @@ body{
     flex-direction: column;
     align-items: center;
 }
+hr{
+    margin-left: 0;
+    margin-right: 0;
+    width: 80%;
+}
 .idle{
     display: none;
 
@@ -26,21 +31,24 @@ body{
     color: black;
     border: solid .15em black;
     font-size: x-large;
+    font-weight: bold;
 }
 .success{
     background: forestgreen;
     color: whitesmoke;
     border: solid .15em black;
     font-size: x-large;
+    font-weight: bold;
 }
-.far{
+.low, .high{
     background: crimson;
     color: whitesmoke;
     border: solid .15em black;
     font-size: x-large;
+    font-weight: bold;
 }
-hr{
-    margin-left: 0;
-    margin-right: 0;
-    width: 80%;
+div.feedback > h1{
+    position: relative;
+    top: 30%;
+    text-align: center;
 }

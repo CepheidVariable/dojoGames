@@ -58,7 +58,17 @@
             <p class="lead">I am thinking of a number between 1 and 100...</p>
             <hr class="my-4">
             <p>Guess in under 5 attempts to secure your spot on the leaderboard, and attain eternal glory!</p>
-            <div class="feedback {{request.session.guess_result}}"></div>
+            <div class="feedback {{request.session.guess_result}}">
+                {% if request.session.guess_result == "success" %}
+                    <h1>{{request.session.random}} was the number!</h1>
+                {% elif request.session.guess_result == "near" %}
+                    <h1>Close! Try again.</h1>
+                {% elif request.session.guess_result == "high" %}
+                    <h1>Too high! Try again.</h1>
+                {% elif request.session.guess_result == "low" %}
+                    <h1>Too low! Try again.</h1>
+                {% endif %}
+            </div>
             <form action="/greatnumbergame/guess" method="POST">
                 {% csrf_token %}
                 <div class="input-group input-group-lg mt-3">

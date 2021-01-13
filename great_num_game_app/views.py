@@ -28,7 +28,11 @@ def guess(request):
         print("Ooo, close! Try again.")
         request.session['guess_result'] = "near"
         return redirect('/greatnumbergame')
-    else:
-        print("Wrong Guess! Try again.")
-        request.session['guess_result'] = "far"
+    elif (int(request.POST['guess']) < request.session['random']): 
+        print("Too low! Try again.")
+        request.session['guess_result'] = "low"
+        return redirect('/greatnumbergame')
+    elif (int(request.POST['guess']) > request.session['random']): 
+        print("Too high! Try again.")
+        request.session['guess_result'] = "high"
         return redirect('/greatnumbergame')
