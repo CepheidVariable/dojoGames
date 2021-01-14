@@ -10,7 +10,7 @@ def goldgame(request):
         request.session['log'] = log_list
         request.session['gamestate'] = ""
     
-    if (request.session['gamestate'] = 'lost'):
+    if (request.session['gamestate'] == 'lost'):
         request.session['gold'] = 0
 
     return render(request, 'goldgame.html')
