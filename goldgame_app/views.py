@@ -11,7 +11,7 @@ def goldgame(request):
 
 
 def earngold(request):
-    print(request.POST)
+    # print(request.POST)
     
     if (request.POST['action'] == "mine"):
         net = randint(20, 40)
@@ -84,7 +84,7 @@ def earngold(request):
 
         elif (net == 1000):
             flag = "positive"
-            outcome = "You hit the big-time! You retire into the sunset to live in infamy."
+            outcome = f"You hit the big-time! {net} gold was earned; you ride off into the sunset in infamy."
             request.session['gamestate'] = 'won'
 
         log_data = {
@@ -128,16 +128,12 @@ def startgame(request):
         request.session['turn'] = 0
 
     if (request.POST['turns'].isnumeric()):
-        str_turns = request.POST['turns'].strip()
-        str_turns = str_turns.replace(" ", "")
-        request.session['turn_limit'] = int(str_turns)
+        request.session['turn_limit'] = int(request.POST['turns'])
     else:
         request.session['turn_limit'] = int(request.POST['default_turns'])
 
     if (request.POST['goal'].isnumeric()):
-        str_goal = request.POST['goal'].strip()
-        str_goal = str_goal.replace(" ", "")
-        request.session['gold_goal'] = int(str_goal)
+        request.session['gold_goal'] = int(request.POST['goal'])
     else:
         request.session['gold_goal'] = int(request.POST['default_goal'])
 

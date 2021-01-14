@@ -65,7 +65,7 @@
     </div>
     <div class="gameend">
     {% elif request.session.gamestate == "won" %}
-    <div class="youlost">
+    <div class="youwon">
         <h1>You Won!</h1>
         <img src="{% static 'assets/images/sunset.png' %}" alt="Sunset - You Win">
         <a class="btn-lg btn-danger mt-3 mb-5" href="/goldgame/reset">Play again.</a>
@@ -79,9 +79,16 @@
             <fieldset disabled>
                 <div class="mt-10 input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Gold:</span>
-                    <input type="text" id="disabledTextInput" class="form-control" aria-label="Username" aria-describedby="basic-addon1" placeholder="{{request.session.gold}}">
+                    <input type="text" id="disabledTextInput" class="form-control" aria-label="Username" aria-describedby="basic-addon1" placeholder="{{request.session.gold}} of {{request.session.gold_goal}}">
                 </div>
             </fieldset>
+            <fieldset disabled>
+                <div class="mt-10 input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Turn:</span>
+                    <input type="text" id="disabledTextInput" class="form-control" aria-label="Username" aria-describedby="basic-addon1" placeholder="{{request.session.turn|add:'1'}} of {{request.session.turn_limit}}">
+                </div>
+            </fieldset>
+
             <div class="spacing"></div>
 
             <div class="card mb-3 g-0" style="max-height: 18.15em; max-width: 40em;">
