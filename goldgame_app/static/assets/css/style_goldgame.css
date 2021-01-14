@@ -21,3 +21,8 @@ footer > a{
 .card{
     background: burlywood;
 }
+textarea{
+    resize: none;
+    overflow-y: scroll;
+    height:300px;
+}

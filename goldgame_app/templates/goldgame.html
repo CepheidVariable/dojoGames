@@ -76,7 +76,11 @@
                         <h5 class="card-title">The Mine</h5>
                         <p class="card-text">Mining is modest and rewarding work. You won't win any awards for a fancy life, but the pay isn't bad. Just be wary of cave-in's. Oh, also, sometimes stuff explodes, but I'm sure you'll be fine.</p>
                         <p class="card-text"><small class="text-muted">(earns 10-20 gold)</small></p>
-                        <a href="#" class="btn btn-danger">Go Mine</a>
+                        <form action="/goldgame/earngold" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="mine">
+                            <input type="submit" class="btn btn-danger" value="Go Mine">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -91,7 +95,11 @@
                         <h5 class="card-title">The Saloon</h5>
                         <p class="card-text">Song, dance, and chance. Drink and be merry while you try your hand at poker, Faro, three-card monte, or some dice. Just beware, this is where many a miner has lost their day's rewards.</p>
                         <p class="card-text"><small class="text-muted">(earn/lose 0-50 gold)</small></p>
-                        <a href="#" class="btn btn-danger">Enter Saloon</a>
+                        <form action="/goldgame/earngold" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="mine">
+                            <input type="submit" class="btn btn-danger" valu="Enter Saloon">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -106,7 +114,11 @@
                         <h5 class="card-title">Sheriff's</h5>
                         <p class="card-text">Work off that fine you earned after a rowdy night in the Saloon by working as a deputy for the Sheriff.</p>
                         <p class="card-text"><small class="text-muted">(earns 5-10 gold)</small></p>
-                        <a href="#" class="btn btn-danger">Deputize Me</a>
+                        <form action="/goldgame/earngold" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="mine">
+                            <input type="submit" class="btn btn-danger" value="Deputize Me">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -121,10 +133,15 @@
                         <h5 class="card-title">Bank Robber</h5>
                         <p class="card-text">Some say a life of crime is dishonest, but to the bank robber it's just another day on the job. What's life without a little excitement? Just watch out for the sheriff and his angry posse.</p>
                         <p class="card-text"><small class="text-muted">(earn 1,000 gold or death)</small></p>
-                        <a href="#" class="btn btn-danger">Rob Bank</a>
+                        <form action="/goldgame/earngold" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="mine">
+                            <input type="submit" class="btn btn-danger" value="Rob Bank">
+                        </form>
                     </div>
                 </div>
             </div>
+            <input type="textarea">
         </div>
 
         <footer>Artwork by 
