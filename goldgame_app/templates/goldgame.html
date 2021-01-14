@@ -63,9 +63,14 @@
         <img src="{% static 'assets/images/skull.png' %}" alt="Skull - You Lost">
         <a class="btn-lg btn-danger mt-3 mb-5" href="/goldgame/reset">Play again.</a>
     </div>
-    <div class="lost">
+    <div class="gameend">
     {% elif request.session.gamestate == "won" %}
-    <div class="won">
+    <div class="youlost">
+        <h1>You Won!</h1>
+        <img src="{% static 'assets/images/sunset.png' %}" alt="Sunset - You Win">
+        <a class="btn-lg btn-danger mt-3 mb-5" href="/goldgame/reset">Play again.</a>
+    </div>
+    <div class="gameend">
     {% else %}
     <div class="live">
     {% endif %}
@@ -107,7 +112,7 @@
                         <div class="card-body">
                             <h5 class="card-title">The Saloon</h5>
                             <p class="card-text">Song, dance, and chance. Try your hand at poker, Faro, three-card monte, or some dice. Beware, many a miner has lost their day's earnings here.</p>
-                            <p class="card-text"><small class="text-muted">(earn 200/lose 100 gold)</small></p>
+                            <p class="card-text"><small class="text-muted">(earn 150/lose 100 gold)</small></p>
                         </div>
                         <form class="mt-1 ms-3" action="/goldgame/earngold" method="POST">
                             {% csrf_token %}

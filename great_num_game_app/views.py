@@ -78,12 +78,12 @@ def addleader(request):
         request.session['leaderboard'].append(leader)
         request.session.modified = True
     
-    return redirect('/greatnumbergame/leaderboard')
+    return redirect('/greatnumbergame/reset')
 
 
 def leaderboard(request):
-    print(request.session['leaderboard'])
-    print(type(request.session['leaderboard'][-1]))
-    print(type(request.session['leaderboard'][-1]['date']))
+    # print(request.session['leaderboard'])
+    # print(type(request.session['leaderboard'][-1]))
+    # print(type(request.session['leaderboard'][-1]['date']))
 
     return render(request, 'leaderboard.html')

@@ -26,7 +26,7 @@ def earngold(request):
         # return redirect('/goldgame')
 
     elif (request.POST['action'] == "saloon"):
-        net = randint(-100, 200)
+        net = randint(-100, 150)
 
         if (net > 0):
             outcome = "earned"
@@ -100,7 +100,7 @@ def earngold(request):
     request.session['log'].append(log_data)
     request.session.modified = True
 
-    if (request.session['turn_limit'] < request.session['turn']):
+    if (request.session['turn_limit'] <= request.session['turn']):
         request.session['gamestate'] = "lost"
     elif (request.session['gold'] >= request.session['gold_goal']):
         request.session['gamestate'] = "won"
@@ -126,7 +126,19 @@ def startgame(request):
         request.session['log'] = log_list
         request.session['gamestate'] = ""
         request.session['turn'] = 0
-        request.session['turn_limit'] = int(request.POST['turns'])
-        request.session['gold_goal'] = int(request.POST['goal'])
+
+    if (request.POST['turns'].isnumeric()):
+        str_turns = request.POST['turns'].strip()
+        str_turns = str_turns.replace(" ", "")
+        request.session['turn_limit'] = int(str_turns)
+    else:
+        request.session['turn_limit'] = str(request.POST['default_turns'])
+
+    if (request.POST['goal'].isnumeric()):
+        str_goal = request.POST['goal'].strip()
+        str_goal = str_goal.replace(" ", "")
+        request.session['gold_goal'] = int(str_goal)
+    else:
+        request.session['gold_goal'] = str(request.POST['default_gold'])
 
     return redirect('/goldgame')

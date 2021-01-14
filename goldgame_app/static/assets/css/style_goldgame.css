@@ -53,7 +53,7 @@ textarea{
 .card-body{
     height: 15em;
 }
-.lost{
+.gameend{
     display: none;
 }
 .youlost{
