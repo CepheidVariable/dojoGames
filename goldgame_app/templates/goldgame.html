@@ -30,7 +30,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="/counter">Counter</a></li>
                             <li><a class="dropdown-item" href="/greatnumbergame">Great Number Game</a></li>
-                            <li><a class="dropdown-item" href="#">Gold Game</a></li>
+                            <li><a class="dropdown-item" href="/goldgame">Gold Game</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -56,8 +56,19 @@
             </div>
         </div>
     </nav>
-
-    <div class="mt-5">
+    
+    {% if request.session.gamestate == "lost" %}
+    <div class="youlost">
+        <h1>You Died...</h1>
+        <img src="{% static 'assets/images/skull.png' %}" alt="Skull - You Lost">
+        <a class="btn-lg btn-danger mt-3 mb-5" href="/goldgame/reset">Play again.</a>
+    </div>
+    <div class="lost">
+    {% elif request.session.gamestate == "won" %}
+    <div class="won">
+    {% else %}
+    <div class="live">
+    {% endif %}
 
         <div class="mt-5 container rounded-top">
             <fieldset disabled>
@@ -67,7 +78,7 @@
                 </div>
             </fieldset>
             <div class="spacing"></div>
-    
+
             <div class="card mb-3 g-0" style="max-height: 18.15em; max-width: 40em;">
                 <div class="row ">
                     <div class="col-md-3" >
@@ -77,7 +88,7 @@
                         <div class="card-body">
                             <h5 class="card-title">The Mine</h5>
                             <p class="card-text">Mining is modest and rewarding work. You won't win any awards for a fancy life, but the pay isn't bad. Just be wary of cave-in's. Oh, also, sometimes stuff explodes, but I'm sure you'll be fine.</p>
-                            <p class="card-text"><small class="text-muted">(earns 10-20 gold)</small></p>
+                            <p class="card-text"><small class="text-muted">(earns 20-40 gold)</small></p>
                         </div>
                         <form class="mt-1 ms-3" action="/goldgame/earngold" method="POST">
                             {% csrf_token %}
@@ -96,7 +107,7 @@
                         <div class="card-body">
                             <h5 class="card-title">The Saloon</h5>
                             <p class="card-text">Song, dance, and chance. Try your hand at poker, Faro, three-card monte, or some dice. Beware, many a miner has lost their day's earnings here.</p>
-                            <p class="card-text"><small class="text-muted">(earn/lose 0-50 gold)</small></p>
+                            <p class="card-text"><small class="text-muted">(earn 200/lose 100 gold)</small></p>
                         </div>
                         <form class="mt-1 ms-3" action="/goldgame/earngold" method="POST">
                             {% csrf_token %}
@@ -114,8 +125,8 @@
                     <div class="col-md-6 offset-1">
                         <div class="card-body">
                             <h5 class="card-title">Sheriff's</h5>
-                            <p class="card-text">Work off that fine you earned after a rowdy night in the Saloon by working as a deputy for the Sheriff.</p>
-                            <p class="card-text"><small class="text-muted">(earns 5-10 gold)</small></p>
+                            <p class="card-text">Work off that fine your rowdy night in the Saloon as a deputy for the Sheriff. Hope you catch a big bounty!</p>
+                            <p class="card-text"><small class="text-muted">(earns 0-100 gold)</small></p>
                         </div>
                         <form class="mt-1 ms-3" action="/goldgame/earngold" method="POST">
                             {% csrf_token %}
@@ -134,7 +145,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Bank Robber</h5>
                             <p class="card-text">Some say a life of crime is dishonest, but to the bank robber it's just another day on the job. What's life without a little excitement? Just watch out for the sheriff and his angry posse.</p>
-                            <p class="card-text"><small class="text-muted">(earn 1,000 gold or death)</small></p>
+                            <p class="card-text"><small class="text-muted">(earn up to a 1,000 gold or possibly die)</small></p>
                         </div>
                         <form class="mt-1 ms-3" action="/goldgame/earngold" method="POST">
                             {% csrf_token %}
@@ -145,33 +156,27 @@
                 </div>
             </div>
         </div>
-        <div class="log">
-            <div class="textarea rounded-bottom">
-            {% for entry in request.session.log %}
-            {% for key, val in entry.items%}
-                {% if val == "positive" %}
-                    <p class="positive">
-                {% elif val == "negative" %}
-                    <p class="negative">
-                {% elif val == "none" %}
-                    <p>
-                {% else %}
-                {{val}}
-                {% endif %}
-            {% endfor %}
-            </p>
-            {% endfor %}
-            </div>
-        </div>
-        <footer class="mt-3">Artwork by 
-            <a href="https://twitter.com/_DeuTilt">@bakudas</a>, 
-            <a href="https://twitter.com/_DeuTilt">@_DeuTilt</a>, 
-            <a href="https://twitter.com/_sofarama">@_sofarama</a>, 
-            <a href="https://twitter.com/itsarfo">@itsarfo</a>. 
-            Published by <a href="https://twitter.com/bakudas">Vaca Roxa.</a> 
-            under CC0 license.
-        </footer>
-
     </div>
+    <div class="log">
+        <div class="textarea rounded-bottom">
+        {% for entry in request.session.log %}
+        {% for key, val in entry.items%}
+            {% if val == "positive" %}
+                <p class="positive">
+            {% elif val == "negative" %}
+                <p class="negative">
+            {% elif val == "none" %}
+                <p>
+            {% else %}
+            {{val}}
+            {% endif %}
+        {% endfor %}
+        </p>
+        {% endfor %}
+        </div>
+    </div>
+    <footer class="mt-3">
+        <span>Artwork by <a href="https://twitter.com/_DeuTilt">@bakudas</a>, <a href="https://twitter.com/_DeuTilt">@_DeuTilt</a>, <a href="https://twitter.com/_sofarama">@_sofarama</a>, <a href="https://twitter.com/itsarfo">@itsarfo</a>. Published by <a href="https://twitter.com/bakudas">Vaca Roxa</a> under CC0 license.</span>
+    </footer>
 </body>
 </html>

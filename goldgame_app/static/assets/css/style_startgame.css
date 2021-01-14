@@ -1,0 +1,31 @@
+body{
+    background: slategray;
+}
+.container{
+    margin-top: 5em;
+}
+.jumbotron{
+    width: 55em;
+    padding: 2rem 1rem;
+    margin: 0 auto;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+hr{
+    margin-left: 0;
+    margin-right: 0;
+    width: 80%;
+}
+form{
+    width: 50%;
+}
+.formbutton{
+    display: flex;
+    justify-content: center;
+}
+.input-group-text{
+    width: 6em;
+}

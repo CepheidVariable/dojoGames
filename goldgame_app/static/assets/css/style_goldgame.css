@@ -19,7 +19,7 @@ footer{
     display: flex;
     justify-content: center;
 }
-footer > a{
+a{
     color: darkred;
 }
 .card{
@@ -52,4 +52,16 @@ textarea{
 }
 .card-body{
     height: 15em;
+}
+.lost{
+    display: none;
+}
+.youlost{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.youlost h1{
+    color: black;
+    font-size: 72pt;
 }
