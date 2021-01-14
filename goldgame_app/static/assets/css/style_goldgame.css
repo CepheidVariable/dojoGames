@@ -10,10 +10,14 @@ body{
     padding-top: 2em;
 }
 .spacing{
-    width: 65%;
+    width: 73%;
 }
 img{
     max-height: 18em;
+}
+footer{
+    display: flex;
+    justify-content: center;
 }
 footer > a{
     color: darkred;
@@ -22,7 +26,30 @@ footer > a{
     background: burlywood;
 }
 textarea{
-    resize: none;
-    overflow-y: scroll;
-    height:300px;
+    width: 82em;
+    height: 10em;
+    color: black;
+}
+.positive{
+    color: darkgreen;
+}
+.negative{
+    color: brown;
+}
+.log{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.textarea{
+    overflow-y: auto;
+    height: 15em;
+    width: 86em;
+    background: lemonchiffon;
+}
+.textarea p{
+    margin: 0;
+}
+.card-body{
+    height: 15em;
 }

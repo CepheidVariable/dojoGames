@@ -57,26 +57,29 @@
         </div>
     </nav>
 
-    <div class="mt-5 container rounded-3">
-        <fieldset disabled>
-            <div class="mt-10 input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Gold:</span>
-                <input type="text" id="disabledTextInput" class="form-control" aria-label="Username" aria-describedby="basic-addon1" placeholder="{{request.session.gold}}">
-            </div>
-        </fieldset>
-        <div class="spacing"></div>
+    <div class="mt-5">
 
-        <div class="card mb-3 g-0" style="max-height: 18em; max-width: 40em;">
-            <div class="row ">
-                <div class="col-md-3" >
-                    <img src="{% static 'assets/images/mine.png' %}" alt="mine building">
+        <div class="mt-5 container rounded-top">
+            <fieldset disabled>
+                <div class="mt-10 input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Gold:</span>
+                    <input type="text" id="disabledTextInput" class="form-control" aria-label="Username" aria-describedby="basic-addon1" placeholder="{{request.session.gold}}">
                 </div>
-                <div class="col-md-6 offset-1">
-                    <div class="card-body">
-                        <h5 class="card-title">The Mine</h5>
-                        <p class="card-text">Mining is modest and rewarding work. You won't win any awards for a fancy life, but the pay isn't bad. Just be wary of cave-in's. Oh, also, sometimes stuff explodes, but I'm sure you'll be fine.</p>
-                        <p class="card-text"><small class="text-muted">(earns 10-20 gold)</small></p>
-                        <form action="/goldgame/earngold" method="POST">
+            </fieldset>
+            <div class="spacing"></div>
+    
+            <div class="card mb-3 g-0" style="max-height: 18.15em; max-width: 40em;">
+                <div class="row ">
+                    <div class="col-md-3" >
+                        <img src="{% static 'assets/images/mine.png' %}" alt="mine building">
+                    </div>
+                    <div class="col-md-6 offset-1">
+                        <div class="card-body">
+                            <h5 class="card-title">The Mine</h5>
+                            <p class="card-text">Mining is modest and rewarding work. You won't win any awards for a fancy life, but the pay isn't bad. Just be wary of cave-in's. Oh, also, sometimes stuff explodes, but I'm sure you'll be fine.</p>
+                            <p class="card-text"><small class="text-muted">(earns 10-20 gold)</small></p>
+                        </div>
+                        <form class="mt-1 ms-3" action="/goldgame/earngold" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="mine">
                             <input type="submit" class="btn btn-danger" value="Go Mine">
@@ -84,37 +87,37 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card mb-3 g-0" style="max-height: 18em; max-width: 40em;">
-            <div class="row ">
-                <div class="col-md-3" >
-                    <img src="{% static 'assets/images/saloon.png' %}" alt="mine building">
-                </div>
-                <div class="col-md-6 offset-1">
-                    <div class="card-body">
-                        <h5 class="card-title">The Saloon</h5>
-                        <p class="card-text">Song, dance, and chance. Drink and be merry while you try your hand at poker, Faro, three-card monte, or some dice. Just beware, this is where many a miner has lost their day's rewards.</p>
-                        <p class="card-text"><small class="text-muted">(earn/lose 0-50 gold)</small></p>
-                        <form action="/goldgame/earngold" method="POST">
+            <div class="card mb-3 g-0" style="max-height: 18.15em; max-width: 40em;">
+                <div class="row ">
+                    <div class="col-md-3" >
+                        <img src="{% static 'assets/images/saloon.png' %}" alt="mine building">
+                    </div>
+                    <div class="col-md-6 offset-1">
+                        <div class="card-body">
+                            <h5 class="card-title">The Saloon</h5>
+                            <p class="card-text">Song, dance, and chance. Try your hand at poker, Faro, three-card monte, or some dice. Beware, many a miner has lost their day's earnings here.</p>
+                            <p class="card-text"><small class="text-muted">(earn/lose 0-50 gold)</small></p>
+                        </div>
+                        <form class="mt-1 ms-3" action="/goldgame/earngold" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="saloon">
-                            <input type="submit" class="btn btn-danger" valu="Enter Saloon">
+                            <input type="submit" class="btn btn-danger" value="Enter Saloon">
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card mb-3 g-0" style="max-height: 18em; max-width: 40em;">
-            <div class="row ">
-                <div class="col-md-3" >
-                    <img src="{% static 'assets/images/sheriff.png' %}" alt="mine building">
-                </div>
-                <div class="col-md-6 offset-1">
-                    <div class="card-body">
-                        <h5 class="card-title">Sheriff's</h5>
-                        <p class="card-text">Work off that fine you earned after a rowdy night in the Saloon by working as a deputy for the Sheriff.</p>
-                        <p class="card-text"><small class="text-muted">(earns 5-10 gold)</small></p>
-                        <form action="/goldgame/earngold" method="POST">
+            <div class="card mb-3 g-0" style="max-height: 19em; max-width: 40em;">
+                <div class="row ">
+                    <div class="col-md-3" >
+                        <img src="{% static 'assets/images/sheriff.png' %}" alt="mine building">
+                    </div>
+                    <div class="col-md-6 offset-1">
+                        <div class="card-body">
+                            <h5 class="card-title">Sheriff's</h5>
+                            <p class="card-text">Work off that fine you earned after a rowdy night in the Saloon by working as a deputy for the Sheriff.</p>
+                            <p class="card-text"><small class="text-muted">(earns 5-10 gold)</small></p>
+                        </div>
+                        <form class="mt-1 ms-3" action="/goldgame/earngold" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="sheriff">
                             <input type="submit" class="btn btn-danger" value="Deputize Me">
@@ -122,18 +125,18 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card mb-3 g-0" style="max-height: 18em; max-width: 40em;">
-            <div class="row ">
-                <div class="col-md-3" >
-                    <img src="{% static 'assets/images/bank.png' %}" alt="mine building">
-                </div>
-                <div class="col-md-6 offset-1">
-                    <div class="card-body">
-                        <h5 class="card-title">Bank Robber</h5>
-                        <p class="card-text">Some say a life of crime is dishonest, but to the bank robber it's just another day on the job. What's life without a little excitement? Just watch out for the sheriff and his angry posse.</p>
-                        <p class="card-text"><small class="text-muted">(earn 1,000 gold or death)</small></p>
-                        <form action="/goldgame/earngold" method="POST">
+            <div class="card mb-3 g-0" style="max-height: 19em; max-width: 40em;">
+                <div class="row ">
+                    <div class="col-md-3" >
+                        <img src="{% static 'assets/images/bank.png' %}" alt="mine building">
+                    </div>
+                    <div class="col-md-6 offset-1">
+                        <div class="card-body">
+                            <h5 class="card-title">Bank Robber</h5>
+                            <p class="card-text">Some say a life of crime is dishonest, but to the bank robber it's just another day on the job. What's life without a little excitement? Just watch out for the sheriff and his angry posse.</p>
+                            <p class="card-text"><small class="text-muted">(earn 1,000 gold or death)</small></p>
+                        </div>
+                        <form class="mt-1 ms-3" action="/goldgame/earngold" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="bank">
                             <input type="submit" class="btn btn-danger" value="Rob Bank">
@@ -141,17 +144,33 @@
                     </div>
                 </div>
             </div>
-            <input type="textarea">
         </div>
-
-        <footer>Artwork by 
+        <div class="log">
+            <div class="textarea rounded-bottom">
+            {% for entry in request.session.log %}
+            {% for key, val in entry.items%}
+                {% if val == "positive" %}
+                    <p class="positive">
+                {% elif val == "negative" %}
+                    <p class="negative">
+                {% elif val == "none" %}
+                    <p>
+                {% else %}
+                {{val}}
+                {% endif %}
+            {% endfor %}
+            </p>
+            {% endfor %}
+            </div>
+        </div>
+        <footer class="mt-3">Artwork by 
             <a href="https://twitter.com/_DeuTilt">@bakudas</a>, 
             <a href="https://twitter.com/_DeuTilt">@_DeuTilt</a>, 
             <a href="https://twitter.com/_sofarama">@_sofarama</a>, 
             <a href="https://twitter.com/itsarfo">@itsarfo</a>. 
             Published by <a href="https://twitter.com/bakudas">Vaca Roxa.</a> 
             under CC0 license.
-            </footer>
+        </footer>
 
     </div>
 </body>
