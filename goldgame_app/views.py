@@ -132,13 +132,13 @@ def startgame(request):
         str_turns = str_turns.replace(" ", "")
         request.session['turn_limit'] = int(str_turns)
     else:
-        request.session['turn_limit'] = str(request.POST['default_turns'])
+        request.session['turn_limit'] = int(request.POST['default_turns'])
 
     if (request.POST['goal'].isnumeric()):
         str_goal = request.POST['goal'].strip()
         str_goal = str_goal.replace(" ", "")
         request.session['gold_goal'] = int(str_goal)
     else:
-        request.session['gold_goal'] = str(request.POST['default_gold'])
+        request.session['gold_goal'] = int(request.POST['default_goal'])
 
     return redirect('/goldgame')
