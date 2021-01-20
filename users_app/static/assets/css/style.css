@@ -1,17 +1,30 @@
+*{
+    box-sizing: border-box;
+}
 body{
     background: slategray;
 }
-#wrap{
-    width: 60em;
-    height: auto;
+#wrapper{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 5em;
+}
+#register{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    height: 30em;
     background: lavender;
 }
-input[type=radio]{
-    transform:scale(1.25);
-    margin: 0 .25em 0 0;
-
+#login{
+    width: 30%;
+    height: 20em;
+    display: flex;
+    flex-direction: column;
+    background: lavender;
 }
-input[type=checkbox]{
-    transform:scale(1.25);
-    margin-top: 1em;
+.wrap > h1{
+    text-align: center;
 }

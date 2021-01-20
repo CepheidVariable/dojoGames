@@ -54,5 +54,53 @@
                 </div>
             </div>
         </nav>
+
+        <div id=wrapper>
+            <div id="register" class="wrap border rounded shadow rounded p-3">
+                <h1>Registration</h1><hr>
+                <form class="p-4" action='/survey' method='POST'>
+                    {% csrf_token %}
+                    <div class="form-group row pb-2">
+                        <label class="col-form-label col-form-label-lg col-sm-4 control-label">Name:</label>
+                        <div class="col-sm-4">
+                            <input type="text" aria-label="First name" class=" form-control form-control-lg" name="first_name" placeholder="First Name">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" aria-label="Last name" class=" form-control form-control-lg" name="last_name" placeholder="Last Name">
+                        </div>
+                    </div>
+        
+                    <div class="form-group row pt-4">
+                        <div class="col-sm-3 offset-sm-5">
+                            <input class="btn-lg btn-primary form-control" type='submit' value='Submit Survey'>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+            <div id="login" class="wrap border rounded shadow rounded p-3">
+                <h1>Login</h1><hr>
+                <form class="p-4" action='/survey' method='POST'>
+                    {% csrf_token %}
+                    <div class="form-group row pb-2">
+                        <label class="col-form-label col-form-label-lg col-sm-4 control-label">Name:</label>
+                        <div class="col-sm-4">
+                            <input type="text" aria-label="First name" class=" form-control form-control-lg" name="first_name" placeholder="First Name">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" aria-label="Last name" class=" form-control form-control-lg" name="last_name" placeholder="Last Name">
+                        </div>
+                    </div>
+        
+        
+                    <div class="form-group row pt-4">
+                        <div class="col-sm-3 offset-sm-5">
+                            <input class="btn-lg btn-primary form-control" type='submit' value='Submit Survey'>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </body>
 </html>
