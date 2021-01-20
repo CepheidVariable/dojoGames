@@ -4,7 +4,6 @@ from datetime import datetime
 from .models import User
 import bcrypt
 
-# Create your views here.
 def index(request):
     if 'visits' in request.session:
         request.session['visits'] +=1
@@ -38,20 +37,23 @@ def users_register(request):
 
     print("Success Condition Met")
 
-    pw_hash =bcrypt.hashpw(request.POST['password'].
-    encode(), bcrypt.gensalt()).decode()
+    pw_hash = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
 
     User.objects.create(
         username = request.POST['username'],
+        first_name = request.POST['first_name'],
+        last_name = request.POST['last_name'],
+        email = request.POST['email'],
+        dob = request.POST['dob'],
         password = pw_hash
     )
-    messages.info(request, "User created, please login.")
+    messages.info(request, "Registration successful, please login.")
     return redirect('/')
 
 
 def users_login(request):
     try:
-        user = User.objects.get(username=request.POST['username'])
+        user = User.objects.get(email=request.POST['email'])
     except:
         messages.error(request, "Username or password incorrect.")
         return redirect('/')
@@ -63,7 +65,8 @@ def users_login(request):
     print("Successful login")
     request.session['user_id'] = user.id
     request.session['username'] = user.username
-    return redirect('/welcome')
+
+    return redirect('/users/welcome')
 
 def users_welcome(request):
     if not 'user_id' in request.session:
@@ -77,7 +80,8 @@ def users_logout(request):
         del request.session['user_id']
         del request.session['username']
     except:
-        pass
+        messages.info(request, "There was some trouble with logging you out...please try again.")
+        redirect('/')
 
     messages.info(request, "Successfully logged out.")
     return redirect('/')
