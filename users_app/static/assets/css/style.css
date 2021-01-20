@@ -8,19 +8,20 @@ body{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     margin-top: 5em;
 }
 #register{
     width: 30%;
+    height: 40em;
     display: flex;
     flex-direction: column;
-    height: 30em;
     background: lavender;
+    margin-right: 15em;
 }
 #login{
-    width: 30%;
-    height: 20em;
+    width: 20%;
+    height: 25em;
     display: flex;
     flex-direction: column;
     background: lavender;
