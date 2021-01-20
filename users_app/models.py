@@ -3,19 +3,23 @@ import re
 from datetime import datetime
 
 class UserManager(models.Manager):
-    def cleanup_spaces(self, post_pattern1=None, post_pattern2=None):
+    def cleanup_spaces(self, post_pattern1=None, post_pattern2=None, post_pattern3=None):
         PATTERN1 = re.compile(r'\s+')
         PATTERN2 = re.compile(r' {2,}')
         
         if post_pattern1 is not None:
             clean_post = re.sub(PATTERN1, ' ', post_pattern1).strip()
-        else:
+        elif post_pattern2 is not None:
             clean_post = re.sub(PATTERN2, ' ', post_pattern2).strip()
+        else:
+            clean_post = re.sub(PATTERN1, '', post_pattern3).strip()
+
 
         return clean_post
 
     def validate(self, post_data):
         errors = {}
+
         user = User.objects.all()
 
         # PATTERN_TITLE = re.compile(r'^([\w.$!()\/"\']+ )+[\w.$!()\/"\']+$|^[\w.$!()"\']{2,}$')
@@ -24,14 +28,24 @@ class UserManager(models.Manager):
         PATTERN_NAME = re.compile(r"^[a-z ,.'-]+$\"i")
         PATTERN_USERNAME = re.compile(r"^(?=.{8,25}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$")
         PATTERN_EMAIL = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+        PATTERN_PWD = re.compile(r"^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$")
 
         # test_first_name = User.objects.cleanup_spaces(post_pattern1=post_data['first_name'])
         # test_last_name = User.objects.cleanup_spaces(post_pattern1=post_data['last_name'])
-
         # test_description = User.objects.cleanup_spaces(post_pattern2=post_data['description'])
+        test_username = User.objects.cleanup_spaces(post_pattern3=post_data['username'])
+        test_password = User.objects.cleanup_spaces(post_pattern1=post_data['password'])
 
-        # if user.filter(username=test_username).exists():
-        #     errors['duplicate'] = "User with that title already exists."
+        if user.filter(username=test_username).exists():
+            errors['duplicate'] = "User with that title already exists."
+
+        if not PATTERN_USERNAME.match(test_username):
+            errors['username'] = "User name must be between 8-25 characters in length."
+
+        if PATTERN_PWD.match(test_password):
+            errors['password'] = "Password must be at least 8 characters in length, include one uppercase letter, one special character, and alphanumeric characters."
+
+
 
         # if not PATTERN_TITLE.match(test_title):
         #     errors['title'] = "Title should be at least 2 characters in length.\nAccepted characters: A-Z, 0-9, ., $, !, ( ), /, \", ', "
