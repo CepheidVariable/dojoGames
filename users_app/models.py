@@ -46,7 +46,7 @@ class UserManager(models.Manager):
         #     errors['release_date'] = "Release date cannot be a future date."
 
     def validate_login(self):
-        
+        errors = {}
         return errors
 
 
@@ -60,3 +60,4 @@ class User(models.Model):
     password = models.CharField(max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = UserManager()
