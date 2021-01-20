@@ -56,10 +56,28 @@ def users_login(request):
         messages.error(request, "Username or password incorrect.")
         return redirect('/')
 
-    if bcrypt.checkpw(request.POST['password'].encode(), user.password.encode()):
-        print("Successful login")
-        return redirect('/')
-    else:
+    if not bcrypt.checkpw(request.POST['password'].encode(), user.password.encode()):
         messages.error(request, "Username or password is invalid.")
         return redirect ('/')
 
+    print("Successful login")
+    request.session['user_id'] = user.id
+    request.session['username'] = user.username
+    return redirect('/welcome')
+
+def users_welcome(request):
+    if not 'user_id' in request.session:
+        messages.error(request, "Please log in to view.")
+        return redirect('/')
+
+    return render(request, "welcome.html")
+
+def users_logout(request):
+    try:
+        del request.session['user_id']
+        del request.session['username']
+    except:
+        pass
+
+    messages.info(request, "Successfully logged out.")
+    return redirect('/')
