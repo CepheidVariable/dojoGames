@@ -1,4 +1,8 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
+from datetime import datetime
+from .models import User
+import bcrypt
 
 # Create your views here.
 def index(request):
@@ -22,3 +26,15 @@ def destroy(request):
     print(f"Counter: {request.session['counter']}")
     request.session.clear()
     return redirect('/')
+
+
+def user_create(request):
+
+
+
+    return redirect('/welcome')
+
+
+def user_login(request):
+    pass
+

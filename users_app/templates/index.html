@@ -58,31 +58,35 @@
         <div id=wrapper>
             <div id="register" class="wrap border rounded shadow rounded p-3">
                 <h1>Registration</h1><hr>
-                <form class="row g-3 p-4" action='/survey' method='POST'>
+                <form class="row g-3 pt-0 p-4" action='/survey' method='POST'>
                     {% csrf_token %}
-                        <div class="col-md-6">
-                            <label for="inputFirstName" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="inputFirstName">
+                        <div class="col-md-12">
+                            <label for="inputCreateUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="inputCreateUsername" placeholder="8-25 characters in length">
                         </div>
                         <div class="col-md-6">
-                            <label for="inputLastName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="inputLastName">
+                            <label for="inputCreateFirstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="inputCreateFirstName">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputCreateLastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="inputCreateLastName">
                         </div>
                         <div class="col-12">
-                            <label for="inputAddress" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            <label for="inputCreateDOB" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="inputCreateDOB">
                         </div>
                         <div class="col-12">
-                            <label for="inputDate" class="form-label">Date of Birth</label>
-                            <input type="date" class="form-control" id="inputDate">
+                            <label for="inputCreateEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="inputCreateEmail" placeholder="name@example.com">
                         </div>
                         <div class="col-12">
-                            <label for="inputPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="inputPassword">
+                            <label for="inputCreatePassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="inputCreatePassword">
                         </div>
                         <div class="col-12">
-                            <label for="inputPasswordConfirm" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="inputPasswordConfirm">
+                            <label for="inputCreatePasswordConfirm" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="inputCreatePasswordConfirm">
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary">Register</button>
@@ -95,13 +99,13 @@
                 <form  action='/survey' method='POST'>
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name@example.com">
+                        <label for="inputEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="name@example.com">
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <label for="inputPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="inputPassword">
                     </div>
                     <button type="submit" class="btn btn-primary">Sign in</button>
                 </form>

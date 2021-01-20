@@ -13,7 +13,7 @@ body{
 }
 #register{
     width: 30%;
-    height: 40em;
+    height: 44em;
     display: flex;
     flex-direction: column;
     background: lavender;
@@ -21,7 +21,7 @@ body{
 }
 #login{
     width: 20%;
-    height: 25em;
+    height: 24em;
     display: flex;
     flex-direction: column;
     background: lavender;
