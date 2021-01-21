@@ -15,3 +15,6 @@ input[type=checkbox]{
     transform:scale(1.25);
     margin-top: 1em;
 }
+.nav-info{
+    margin-left: 1em;
+}

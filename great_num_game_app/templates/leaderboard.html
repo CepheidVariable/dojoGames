@@ -47,12 +47,14 @@
                         <a class="nav-link active" aria-current="page" href="/greatnumbergame/leaderboard">Leaderboard</a>
                     </li>
                 </ul>
-                <span class="navbar-text me-2">
-                Visits: {{ request.session.visits}}
-                </span>
-                <span class="navbar-text">
-                    Counter: {{ request.session.counter}}
-                </span>
+                {% if request.session.username %}
+                    <span class="navbar-text nav-info">Hello, {{request.session.username}}!</span>
+                    <a class="navbar-text nav-info" href="/users/logout">Logout</a>
+                {% else %}
+                    <a href="/">Sign in {{request.session.username}}</a>
+                {% endif %}
+                <span class="navbar-text nav-info">Visits: {{ request.session.visits}}</span>
+                <span class="navbar-text nav-info">Counter: {{ request.session.counter}}</span>
             </div>
         </div>
     </nav>

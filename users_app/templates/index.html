@@ -9,7 +9,6 @@
         <script src="{% static 'assets/js/bootstrap.bundle.js' %}"></script>
         <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
         <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -47,75 +46,84 @@
                             <a class="nav-link active" aria-current="page" href="/greatnumbergame/leaderboard">Leaderboard</a>
                         </li>
                     </ul>
-                    <span class="navbar-text me-2">
-                    Visits: {{ request.session.visits}}
-                    </span>
-                    <span class="navbar-text">Counter: {{ request.session.counter}}</span>
+                    {% if request.session.username %}
+                        <span class="navbar-text nav-info">Hello, {{request.session.username}}!</span>
+                        <a class="navbar-text nav-info" href="/users/logout">Logout</a>
+                    {% else %}
+                        <a href="/">Sign in {{request.session.username}}</a>
+                    {% endif %}
+                    <span class="navbar-text nav-info">Visits: {{ request.session.visits}}</span>
+                    <span class="navbar-text nav-info">Counter: {{ request.session.counter}}</span>
                 </div>
             </div>
         </nav>
         <div id=wrapper>
-            <div id="register" class="wrap border rounded shadow rounded p-3">
+            <div id="register" class="content-box border rounded shadow p-3">
                 <h1>Registration</h1><hr>
                 <form class="row g-3 pt-0 p-4" action='/users/register' method='POST'>
                     {% csrf_token %}
                     <div class="col-md-12">
                         <label for="inputCreateUsername" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="inputCreateUsername" placeholder="8-25 characters in length">
+                        <input name="username" type="text" class="form-control" id="inputCreateUsername" placeholder="8-25 characters in length">
                     </div>
                     <div class="col-md-6">
                         <label for="inputCreateFirstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="inputCreateFirstName">
+                        <input name="first_name" type="text" class="form-control" id="inputCreateFirstName">
                     </div>
                     <div class="col-md-6">
                         <label for="inputCreateLastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="inputCreateLastName">
+                        <input name="last_name" type="text" class="form-control" id="inputCreateLastName">
                     </div>
                     <div class="col-12">
                         <label for="inputCreateDOB" class="form-label">Date of Birth</label>
-                        <input type="date" class="form-control" id="inputCreateDOB">
+                        <input name="dob" type="date" class="form-control" id="inputCreateDOB">
                     </div>
                     <div class="col-12">
                         <label for="inputCreateEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="inputCreateEmail" placeholder="name@example.com">
+                        <input name="email" type="email" class="form-control" id="inputCreateEmail" placeholder="name@example.com">
                     </div>
                     <div class="col-12">
                         <label for="inputCreatePassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="inputCreatePassword">
+                        <input name="password" type="password" class="form-control" id="inputCreatePassword">
                     </div>
                     <div class="col-12">
                         <label for="inputCreatePasswordConfirm" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="inputCreatePasswordConfirm">
+                        <input name="confirm_password" type="password" class="form-control" id="inputCreatePasswordConfirm">
                     </div>
                     <div class="col-12">
+                        <ul class="messages">    
+                            {% for message in messages %}
+                                {% if 'register' in message.tags %}
+                                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
                         <button type="submit" class="btn btn-primary">Register</button>
                     </div>
                 </form>
             </div>
-            <div id="login" class="wrap border rounded shadow rounded p-3">
+            <div id="login" class="content-box border rounded shadow p-3">
                 <h1>Login</h1><hr>
                 <form class="row g-3 pt-0 p-4" action='/users/login' method='POST'>
                     {% csrf_token %}
                     <div class="col-12">
                         <label for="inputEmail" class="form-label">Email address</label>
-                        <input name="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="name@example.com">
+                        <input name="login_email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="name@example.com">
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="col-12">
                         <label for="inputPassword" class="form-label">Password</label>
-                        <input name="password" type="password" class="form-control" id="inputPassword">
+                        <input name="login_password" type="password" class="form-control" id="inputPassword">
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                    </div>
-                    <div>
-                        {% if messages %}
                         <ul class="messages">    
-                            {% for message in messages %}    
-                                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                            {% for message in messages %}
+                                {% if 'login' in message.tags %}
+                                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                                {% endif %}
                             {% endfor %}
                         </ul>
-                        {% endif %}
+                        <button type="submit" class="btn btn-primary">Sign in</button>
                     </div>
                 </form>
             </div>

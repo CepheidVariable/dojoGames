@@ -1,0 +1,37 @@
+body{
+    background: slategray;
+}
+.wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5em;
+}
+.content-box{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    background: lavender;
+    text-align: left;
+}
+.nav-info{
+    margin-left: 1em;
+}
+.carousel{
+    width: 700px;
+    height: auto;
+    border: 2px solid steelblue;
+}
+.carousel-caption p, h5 {
+    font-size: 20pt;
+    font-weight: 600;
+    font-style: oblique;
+    color: steelblue;
+}
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+    text-align: center;
+}

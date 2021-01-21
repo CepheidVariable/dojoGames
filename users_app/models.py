@@ -4,6 +4,13 @@ from datetime import datetime, date
 
 class UserManager(models.Manager):
     def cleanup_spaces(self, post_pattern1=None, post_pattern2=None, post_pattern3=None):
+        '''
+        Strips erroneous spacing around data, and inbetween based of several patterns
+        PATTERN1: all spaces and newline characters
+        PATTERN2: any double spaces, but allows newline characters
+
+        Note: the parameter post_pattern3 is a special case of PATTERN1 for use with usernames where spaces are not desirable.
+        '''
         PATTERN1 = re.compile(r'\s+')
         PATTERN2 = re.compile(r' {2,}')
         
@@ -22,7 +29,7 @@ class UserManager(models.Manager):
         AGE_LIMIT = 13
         TODAY = date.today()
 
-        PATTERN_NAME = re.compile(r"^[a-z ,.'-]+$\"i")
+        PATTERN_NAME = re.compile(r"(?i)^[a-z ,.'-]+$")
         PATTERN_USERNAME = re.compile(r"^(?=.{8,25}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$")
         PATTERN_EMAIL = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
         PATTERN_PWD = re.compile(r"^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$")
@@ -32,16 +39,35 @@ class UserManager(models.Manager):
         test_last_name = User.objects.cleanup_spaces(post_pattern1=post_data['last_name'])
         test_email = User.objects.cleanup_spaces(post_pattern1=post_data['email'])
         test_password = User.objects.cleanup_spaces(post_pattern1=post_data['password'])
-
+        print(test_username, test_first_name, test_last_name, test_email)
+        
+        # Validate username
         if User.objects.filter(username=test_username).exists():
             errors['duplicate'] = "User with that title already exists."
-
         if not PATTERN_USERNAME.match(test_username):
-            errors['username'] = "User name must be between 8-25 characters in length."
+            errors['username'] = "Username must be between 8-25 characters in length. "\
+            + "Contain alphanumeric characters, underscore or dot. "\
+            + "Underscore or dot cannot be next to each other, occur multiple times, or be at the start/end."
+
+        # Validate first and last name
         if not PATTERN_NAME.match(test_first_name):
             errors['first_name'] = "First name invalid"
         if not PATTERN_NAME.match(test_last_name):
             errors['last_name'] = "Last name invalid"
+
+        #Validate date of birth
+        if post_data['dob'] == '':
+            errors['dob'] = "DOB is invalid"
+        else:
+            if (datetime.strptime(post_data['dob'], '%Y-%m-%d') > datetime.today()):
+                errors['dob'] = "DOB is invalid"
+            else:
+                dob = datetime.strptime(post_data['dob'], '%Y-%m-%d').date()
+                age = TODAY.year - dob.year - ((TODAY.month, TODAY.day) < (dob.month, dob.day))
+                if age < AGE_LIMIT:
+                    errors['age'] = "Must be 13 or older to register."
+
+        # Validate email
         if not PATTERN_EMAIL.match(test_email):
             errors['email'] = "Email invalid"
 
@@ -49,12 +75,6 @@ class UserManager(models.Manager):
         if PATTERN_PWD.match(test_password):
             errors['password'] = "Password must be at least 8 characters in length, include one uppercase letter, one special character, and alphanumeric characters."
 
-        if (datetime.strptime(post_data['release_date'], '%Y-%m-%d') > datetime.today()):
-            errors['release_date'] = "DOB is invalid"
-
-        age = TODAY.year - post_data['dob'].year - ((TODAY.month, TODAY.day) < (post_data['dob'].month, post_data['dob'].day))
-        if age < AGE_LIMIT:
-            errors['age'] = "Must be 13 or older to register."
         
         return errors
 

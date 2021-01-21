@@ -66,3 +66,6 @@ div.feedback > h1, h2, p{
 form.playagain{
     display: none;
 }
+.nav-info{
+    margin-left: 1em;
+}
