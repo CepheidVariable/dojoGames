@@ -37,9 +37,11 @@
                             Tools
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                {% if request.session.username %}
                                 <li><a class="dropdown-item" href="/destroy_session">Reset Session (Caution!)</a></li>
                                 <li><a class="dropdown-item" href="/counter/reset">Reset Counter</a></li>
                                 <li><a class="dropdown-item" href="/greatnumbergame/reset">Reset Attempts</a></li>
+                                {% endif %}
                             </ul>
                         </li>
                         <li class="nav-item">

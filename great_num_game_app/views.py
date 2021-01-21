@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
 from random import randint
+from django.contrib import messages
 import datetime
 import json
 
 
 # Create your views here.
 def great_num_game(request):
+    if 'user_id' not in request.session:
+        messages.error(request, "Please log in to view.", extra_tags='login')
+        return redirect('/')
+
     if ('random' not in request.session):
         request.session['random'] = randint(1, 100)
         request.session['attempts'] = 0

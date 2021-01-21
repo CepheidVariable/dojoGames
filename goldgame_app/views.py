@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
 from random import random, randint, choices
+from django.contrib import messages
 import datetime
 
 # Create your views here.
 def goldgame(request):
+    if 'user_id' not in request.session:
+        messages.error(request, "Please log in to view.", extra_tags='login')
+        return redirect('/')
+
     if ('gold' not in request.session):
         return render(request, 'startgame.html')
 

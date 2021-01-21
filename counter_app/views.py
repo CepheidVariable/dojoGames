@@ -1,7 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.contrib import messages
 
 # Create your views here.
 def counter(request):
+    if 'user_id' not in request.session:
+        messages.error(request, "Please log in to view.", extra_tags='login')
+        return redirect('/')
+
     if (not 'counter' in request.session):
         request.session['counter'] = 0
     return render(request, 'counter.html')
